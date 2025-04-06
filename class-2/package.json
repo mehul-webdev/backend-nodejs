@@ -1,7 +1,8 @@
 {
   "name": "class-2",
   "scripts": {
-    "start": "nodemon server.js"
+    "start": "nodemon src/server.js",
+    "startMiddleWare": "nodemon server.js --exec \"node -r ./middleware.js\""
   },
   "dependencies": {
     "express": "^5.1.0",
