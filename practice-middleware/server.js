@@ -11,7 +11,26 @@ const timeStampMiddleware = (req, res, next) => {
   next();
 };
 
+const handleCheckParam = (req, res, next) => {
+  const params = req.params.id;
+
+  const isNum = !isNaN(params);
+  const num = Number(params);
+
+  console.log("Params:", params, typeof params, isNum, num);
+  next();
+};
+
 app.use(timeStampMiddleware);
+
+app.get("/check/:id", handleCheckParam, (req, res) => {
+  const timeStamp = req.myTimeStamp;
+  const id = req.params.id;
+  res.status(200).json({
+    message: `ID received: ${id} ${typeof id}`,
+    timeStamp,
+  });
+});
 
 app.get("/", (req, res) => {
   const timeStamp = req.myTimeStamp;
